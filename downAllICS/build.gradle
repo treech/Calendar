@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.1'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionName "1.0"
+        versionCode 1
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("boolean","API_DEBUG","true")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField("boolean","API_DEBUG","false")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def releaseTime() {
+    return new Date().time.hashCode()
+}
+
+dependencies {
+    compile files('libs/activation.jar')
+    compile files('libs/additionnal.jar')
+    compile files('libs/mail.jar')
+}
